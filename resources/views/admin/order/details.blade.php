@@ -101,7 +101,6 @@
                             @foreach ($orders as $order)
                                 <tr>
                                     <input type="hidden" class="productId" value="{{ $order->id }}">
-                                    <input type="hidden" class="productOrderCount" value="{{ $order->order_count }}">
                                     <input type="hidden" class="userId" value="{{ $order->user_id }}">
 
                                     <td>
@@ -109,7 +108,7 @@
                                             class=" w-50 img-thumbnail">
                                     </td>
                                     <td>{{ $order->name }}</td>
-                                    <td>{{ $order->order_count }}
+                                    <td><span class="productOrderCount">{{ $order->order_count }}</span>
                                         @if ($order->order_count > $order->stock)
                                             <small class="text-danger">(out of stock)</small>
                                         @endif
@@ -158,26 +157,36 @@
         });
 
         $('#btn-order-confirm').click(function() {
-            orderCode = $('#orderCode').text();
-            productId = $('.productId').val();
-            productOrderCount = $('.productOrderCount').val();
-            productStock = $('.productStock').text();
-            userId = $('.userId').val();
+            const data = [];
+            $('#productTable tbody tr').each(function(index, row) {
 
-            data = {
-                'orderCode': orderCode,
-                'productId': productId,
-                'productOrderCount': productOrderCount,
-                'productStock': productStock
-            };
+                const orderCode = $('#orderCode').text();
+                const productId = $(row).find('.productId').val();
+                const productOrderCount = $(row).find('.productOrderCount').text();
+                const productStock = $(row).find('.productStock').text()
+                const userId = $('.userId').val();
+
+                data.push({
+                    'orderCode': orderCode,
+                    'productId': productId,
+                    'productOrderCount': productOrderCount,
+                    'productStock': productStock
+                });
+
+            })
+
+            console.log("data: ", data);
 
             $.ajax({
                 type: 'GET',
                 url: '/admin/order/confirm',
-                data: data,
+                data: Object.assign({}, data),
+                dataType: 'json',
                 success: function(res) {
                     if (res.status === 'success') {
                         location.href = '/admin/order/list'; // Redirect on success
+                    } else if (res.status == 'error') {
+                        console.log(res.message)
                     }
                 }
             })

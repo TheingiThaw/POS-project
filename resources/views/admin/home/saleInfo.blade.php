@@ -28,6 +28,10 @@
                                         class="img-thumbnail w-25" alt=""></td>
                             </tr>
                         @endforeach
+                    @else
+                        <tr>
+                            <td colspan="5">There is no data</td>
+                        </tr>
                     @endif
 
                 </tbody>

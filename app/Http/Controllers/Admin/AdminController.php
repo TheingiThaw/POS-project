@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\PaymentHistory;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -143,17 +144,19 @@ class AdminController extends Controller
                     ->where('order_code', $orderCode)
                     ->get();
 
-        $stockcheck = Order::select('products.stock', 'orders.count')
+        $stockchecks = Order::select('products.stock', 'orders.count')
                     ->leftJoin('products', 'products.id', 'orders.product_id')
-                    ->where('orders.order_code', $orderCode)
-                    ->first();
+                    ->where('order_code', $orderCode)
+                    ->distinct('products.id')
+                    ->get();
 
-        if($stockcheck->count <= $stockcheck->stock){
-            $stockValidation = true;
+        foreach($stockchecks as $stockcheck){
+            if($stockcheck->count > $stockcheck->stock){
+                $stockValidation = false;
+            }
         }
-        else{
-            $stockValidation = false;
-        }
+
+
 
         $paymentHistory = PaymentHistory::select('user_name','phone','address','payment_method','total_amt', 'payslip_image','created_at')
                             ->where('order_code',$orderCode)
@@ -191,27 +194,31 @@ class AdminController extends Controller
 
     //order confirm
     public function orderConfirm(Request $request) {
+        $orders = $request->all();
+        logger($orders);
+        Order::where('order_code', $orders[0]['orderCode'])->update([
+                    'status' => 1
+                ]);
 
-        $orderCode = $request['orderCode'];
-        $productId = $request['productId'];
-        $productOrderCount = $request['productOrderCount'];
-        $productStock = $request['productStock'];
-        $userId = $request['userId'];
+        foreach($orders as $order){
+            if ($order['productStock'] < $order['productOrderCount']) {
+                alert()->error('Order Fail', 'Order failed :(');
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Insufficient stock to confirm the order.',
+                ], 400);
+            }
+            Product::where('id', $order['productId'])->decrement('stock', $order['productOrderCount']);
 
-        Order::where('order_code',$orderCode)->update([
-            'status' => 1
-        ]);
+        }
 
-        Product::where('id',$productId)->update([
-            'stock' => $productStock - $productOrderCount
-        ]);
-
-        alert()->success('Order Confirmation', 'Order Confrimed Successfully');
+        alert()->success('Order Confirmation', 'Order Confirmed Successfully');
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Order confirmed successfully.'
+            'message' => 'Order confirmed successfully.',
         ]);
+
     }
 
     //sales informations

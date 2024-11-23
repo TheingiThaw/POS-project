@@ -30,6 +30,9 @@
                             </tr>
                         @endforeach
                     @else
+                        <tr>
+                            <td colspan="3" class="text-center">There is no order yet</td>
+                        </tr>
                     @endif
 
                 </tbody>

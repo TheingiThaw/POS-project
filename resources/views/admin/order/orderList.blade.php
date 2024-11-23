@@ -69,7 +69,13 @@
                                     </td>
                                 </tr>
                             @endforeach
+                        @else
+                            <tr>
+                                <td colspan="5">There is no data</td>
+                            </tr>
                         @endif
+
+
 
                     </tbody>
                 </table>
