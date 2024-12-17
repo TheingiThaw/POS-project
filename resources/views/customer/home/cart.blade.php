@@ -195,7 +195,7 @@
                     error: function(xhr, status, error) {
                         console.error('AJAX Error:', status, error);
                         console.log('Response Text:', xhr
-                            .responseText); // Log the server's response
+                            .responseText);
                     }
                 })
 
