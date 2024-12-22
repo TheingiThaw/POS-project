@@ -189,8 +189,8 @@
                     },
                     dataType: 'json',
                     success: function(res) {
-                        console.log(res.status == 'success' ? location.href =
-                            '/user/order/paymentPage' : location.reload());
+                        res.status == 'success' ? location.href =
+                            '/user/order/paymentPage' : location.reload();
                     },
                     error: function(xhr, status, error) {
                         console.error('AJAX Error:', status, error);
@@ -199,7 +199,6 @@
                     }
                 })
 
-                console.log(orderList);
             })
 
         });
