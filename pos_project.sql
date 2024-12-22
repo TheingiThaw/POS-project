@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2024 at 02:43 PM
+-- Generation Time: Dec 22, 2024 at 03:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -93,12 +93,12 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Sugar Apple', '2024-11-23 03:49:49', '2024-11-23 03:49:49'),
-(2, 'Banana', '2024-11-23 03:49:53', '2024-11-23 03:49:53'),
-(3, 'Papaya', '2024-11-23 03:50:00', '2024-11-23 03:50:00'),
-(4, 'Mango', '2024-11-23 03:50:20', '2024-11-23 03:50:20'),
-(5, 'Jackfruit', '2024-11-23 03:50:27', '2024-11-23 03:50:27'),
-(6, 'Guava', '2024-11-23 03:50:32', '2024-11-23 03:50:32');
+(1, 'Guava', '2024-12-22 07:40:55', '2024-12-22 07:40:55'),
+(2, 'Banana', '2024-12-22 07:41:03', '2024-12-22 07:41:03'),
+(3, 'Mango', '2024-12-22 07:41:08', '2024-12-22 07:41:08'),
+(4, 'Suger Apple', '2024-12-22 07:41:19', '2024-12-22 07:41:19'),
+(5, 'Jack Fruit', '2024-12-22 07:41:25', '2024-12-22 07:41:25'),
+(6, 'Papaya', '2024-12-22 07:41:31', '2024-12-22 07:41:31');
 
 -- --------------------------------------------------------
 
@@ -114,13 +114,6 @@ CREATE TABLE `comments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`id`, `product_id`, `user_id`, `comment`, `created_at`, `updated_at`) VALUES
-(1, 4, 3, 'Really like it', '2024-11-23 05:18:50', '2024-11-23 05:18:50');
 
 -- --------------------------------------------------------
 
@@ -256,13 +249,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `product_id`, `user_id`, `count`, `status`, `order_code`, `created_at`, `updated_at`) VALUES
-(1, 10, 2, 4, '2', 'OC-POS-8758420', '2024-11-23 04:11:16', '2024-11-23 07:10:04'),
-(2, 6, 2, 3, '2', 'OC-POS-8758420', '2024-11-23 04:11:16', '2024-11-23 07:10:04'),
-(3, 1, 2, 3, '2', 'OC-POS-2128019', '2024-11-23 04:13:06', '2024-11-23 07:09:55'),
-(4, 4, 2, 2, '2', 'OC-POS-2128019', '2024-11-23 04:13:06', '2024-11-23 07:09:55'),
-(5, 8, 2, 3, '2', 'OC-POS-2128019', '2024-11-23 04:13:06', '2024-11-23 07:09:55'),
-(6, 4, 3, 2, '1', 'OC-POS-5425362', '2024-11-23 05:20:00', '2024-11-23 06:52:53'),
-(7, 8, 3, 7, '1', 'OC-POS-5425362', '2024-11-23 05:20:00', '2024-11-23 06:52:53');
+(1, 7, 3, 2, '1', 'OC-POS-8281088', '2024-12-22 08:03:26', '2024-12-22 08:06:19'),
+(2, 10, 3, 2, '1', 'OC-POS-8281088', '2024-12-22 08:03:26', '2024-12-22 08:06:19');
 
 -- --------------------------------------------------------
 
@@ -296,10 +284,10 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `account_number`, `account_name`, `type`, `created_at`, `updated_at`) VALUES
-(1, '09787878654', 'Giselle', 'Kpay', '2024-11-23 03:51:12', '2024-11-23 03:51:12'),
-(2, '09454545231', 'Giselle', 'AYA Pay', '2024-11-23 03:51:33', '2024-11-23 03:51:33'),
-(3, '000067583627322', 'Crystal', 'CB Bank', '2024-11-23 03:52:03', '2024-11-23 03:52:03'),
-(4, '000046568390004', 'Jessica', 'KBZ Bank', '2024-11-23 03:52:28', '2024-11-23 03:52:28');
+(1, '09987654321', 'Luna', 'Kpay', '2024-12-22 07:41:49', '2024-12-22 07:41:49'),
+(2, '000034567890100', 'Ember', 'CBPay', '2024-12-22 07:42:00', '2024-12-22 07:42:00'),
+(3, '09123456789', 'Crystal', 'AYAPay', '2024-12-22 07:42:09', '2024-12-22 07:42:09'),
+(4, '000034567890100', 'Jessica', 'KBZ Bank', '2024-12-22 07:42:40', '2024-12-22 07:42:40');
 
 -- --------------------------------------------------------
 
@@ -325,9 +313,7 @@ CREATE TABLE `payment_histories` (
 --
 
 INSERT INTO `payment_histories` (`id`, `user_name`, `phone`, `address`, `payment_method`, `order_code`, `payslip_image`, `total_amt`, `created_at`, `updated_at`) VALUES
-(1, 'Vernon', '09123123123', 'New York', 'Kpay', 'OC-POS-8758420', '6741b14c0504cimages (1).png', '14000', '2024-11-23 04:11:16', '2024-11-23 04:11:16'),
-(2, 'Vernon', '09678678678', 'Mosco', 'KBZ Bank', 'OC-POS-2128019', '6741b1ba34eccimages (1).png', '61000', '2024-11-23 04:13:06', '2024-11-23 04:13:06'),
-(3, 'Joshua', '09123456789', 'East Los Angeles', 'AYA Pay', 'OC-POS-5425362', '6741c168337beimages (1).png', '20000', '2024-11-23 05:20:00', '2024-11-23 05:20:00');
+(1, 'gi genevieve', '09123456789', 'Hendon, London', 'Kpay', 'OC-POS-8281088', '67682336c5baaimages (1).png', '39000', '2024-12-22 08:03:26', '2024-12-22 08:03:26');
 
 -- --------------------------------------------------------
 
@@ -352,16 +338,16 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `price`, `description`, `category_id`, `stock`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'Jackfruit L', 15000, 'Ripe yellow jackfruit has a subtly sweet flavor,as a combination of banana, apple, and mango. Young green jackfruit has a neutral flavor and texture similar to shredded meat, making it a popular meat substitute in savory dishes.', '1', 20, '6741ad9999b4b1709276392114.jpg', '2024-11-23 03:55:29', '2024-11-23 05:40:12'),
-(2, 'Jackfruit S', 10000, 'Ripe yellow jackfruit has a subtly sweet flavor,as a combination of banana, apple, and mango. Young green jackfruit has a neutral flavor and texture similar to shredded meat, making it a popular meat substitute in savory dishes.', '5', 10, '6741adc1d098a11.web_images_junejuly24_655x368_aisles_4_things_jackfruit.jpg', '2024-11-23 03:56:09', '2024-11-23 03:56:09'),
-(3, 'Banana', 3000, 'melon, pineapple, candy and clove flavour notes. Yellow bananas have higher sugar concentrations and therefore taste sweeter.', '2', 10, '6741adec9f961new_ambon-banana-thumbnail.png', '2024-11-23 03:56:52', '2024-11-23 03:56:52'),
-(4, 'Burmese Banana', 4000, 'melon, pineapple, candy and clove flavour notes. Yellow bananas have higher sugar concentrations and therefore taste sweeter.', '1', 1, '6741ae10163f9images.jpg', '2024-11-23 03:57:28', '2024-11-23 06:52:53'),
-(5, 'Papaya', 3000, 'a ripened papaya will be juicy, sweet and similar to cantaloupe in flavor, although some types may be musky', '3', 15, '6741ae4b64bfepapaya-health-benefits.jpg', '2024-11-23 03:58:27', '2024-11-23 03:58:27'),
-(6, 'Sugar apple S', 1000, 'its flesh has a pleasant sweet flavor and a highly juicy texture. for most, its taste is distinctly creamy, like that of custard.', '1', 7, '6741aeb270d8ecustard-apple-1.jpg', '2024-11-23 04:00:10', '2024-11-23 04:00:10'),
-(7, 'Sugar Apple L', 1500, 'its flesh has a pleasant sweet flavor and a highly juicy texture. for most, its taste is distinctly creamy, like that of custard.', '1', 13, '6741aed76ad4961PYVsMCdHL._AC_UF894,1000_QL80_.jpg', '2024-11-23 04:00:47', '2024-11-23 04:00:47'),
-(8, 'Yin Kwal', 1000, 'soft & juicy and emits a sweet fragrance. It has a fresh and sweet taste and depending on the variety, its colour ranges from matte green to pale orange and sunshine yellow. The texture is fibrous, and its consistency is buttery.', '4', 23, '6741af20cc1admango-1-1024x673.jpg', '2024-11-23 04:02:00', '2024-11-23 06:52:53'),
-(9, 'Ma Chit Su', 1000, 'soft & juicy and emits a sweet fragrance. It has a fresh and sweet taste and depending on the variety, its colour ranges from matte green to pale orange and sunshine yellow. The texture is fibrous, and its consistency is buttery.', '4', 20, '6741af3a4714cproduct-packshot-mango.jpg', '2024-11-23 04:02:26', '2024-11-23 04:02:26'),
-(10, 'Diamond Mango', 1500, 'soft & juicy and emits a sweet fragrance. It has a fresh and sweet taste and depending on the variety, its colour ranges from matte green to pale orange and sunshine yellow. The texture is fibrous, and its consistency is buttery.', '1', 3, '6741af6216d65yellow-mango.jpeg', '2024-11-23 04:03:06', '2024-11-23 05:36:03');
+(1, 'Diamond Mango', 1500, 'The flesh is firm, fiberless, and sweet with terrific Indochinese-hybrid type flavor. It is comparable to Dupuis Saigon. It contains a seed that is sometimes polyembryonic.', '3', 20, '67681ee8e8fe0yellow-mango.jpeg', '2024-12-22 07:45:04', '2024-12-22 07:45:04'),
+(2, 'Ma Chit su', 1000, 'yellow to orange flesh that is aqueous, fibreless, and soft with a tender, succulent consistency when ripe', '3', 3, '67681f4a39ec7product-packshot-mango.jpg', '2024-12-22 07:46:42', '2024-12-22 07:46:42'),
+(3, 'Yin Kwal', 1000, 'Myanmar mangoes release a fragrant aroma when ripe and are traditionally sweet and subtly sour with tangy, fruity, turpentine, and floral nuances.', '3', 30, '67681f7a43defmango-1-1024x673.jpg', '2024-12-22 07:47:30', '2024-12-22 07:47:30'),
+(4, 'Sugar Apple S', 1000, 'soft to touch, and the segments slightly separate from the rest of the skin, exposing the pale interior. They contain several black oblong seeds that are inedible and potentially toxic', '4', 35, '67681fc0d1e8361PYVsMCdHL._AC_UF894,1000_QL80_.jpg', '2024-12-22 07:48:40', '2024-12-22 07:48:40'),
+(5, 'Sugar Apple M', 1500, 'soft to touch, and the segments slightly separate from the rest of the skin, exposing the pale interior. They contain several black oblong seeds that are inedible and potentially toxic', '4', 3, '67681feb4906acustard-apple-1.jpg', '2024-12-22 07:49:23', '2024-12-22 07:49:23'),
+(6, 'Papaya', 3000, 'has a sweet-tart flavor that is similar to cantaloupe or a more exotic mango. The taste of papaya can vary depending on the cultivar and production location', '6', 10, '6768201dab775papaya-health-benefits.jpg', '2024-12-22 07:50:13', '2024-12-22 07:50:13'),
+(7, 'Burmese Banana', 4000, 'The fruit is nutritious and versatile, a source of essential nutrients and vitamins.', '2', 8, '676820afdb5e7images.jpg', '2024-12-22 07:52:39', '2024-12-22 08:06:19'),
+(8, 'Banana', 3000, 'The fruit is nutritious and versatile, a source of essential nutrients and vitamins.', '2', 16, '676820d355cfanew_ambon-banana-thumbnail.png', '2024-12-22 07:53:15', '2024-12-22 07:53:15'),
+(9, 'Jack Fruit S', 7000, 'an exotic fruit with a unique shredded meat-like texture', '5', 12, '676820fc1759011.web_images_junejuly24_655x368_aisles_4_things_jackfruit.jpg', '2024-12-22 07:53:56', '2024-12-22 07:53:56'),
+(10, 'Jack Fruit L', 13000, 'an exotic fruit with a unique shredded meat-like texture', '5', 5, '6768211e74d181709276392114.jpg', '2024-12-22 07:54:30', '2024-12-22 08:06:19');
 
 -- --------------------------------------------------------
 
@@ -383,8 +369,7 @@ CREATE TABLE `ratings` (
 --
 
 INSERT INTO `ratings` (`id`, `product_id`, `user_id`, `count`, `created_at`, `updated_at`) VALUES
-(1, 4, 3, 3, '2024-11-23 05:18:35', '2024-11-23 05:18:35'),
-(2, 1, 2, 4, '2024-11-23 07:13:09', '2024-11-23 07:13:09');
+(1, 7, 3, 3, '2024-12-22 08:02:26', '2024-12-22 08:02:26');
 
 -- --------------------------------------------------------
 
@@ -406,8 +391,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('bClt1upXMNAaPrrBKwBu1h3VBBHK73cuP8GVKtd5', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoia1V0SGZJSlZkOXoyeXJ1MXI0eEMwVHlnV2FCcEo5cnkwWG1YN09PcyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1732362669),
-('zIBZ3bg8OxjdVzajFjXI0OeDPZkWkMx0zxehhbsD', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSEQxcGFHTEd1ZDM5dUtobm1sd3ZtelU2Zml3b045S3ROV3Q0ZDhTUCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fX0=', 1732369413);
+('XW0W71p4zJNz2T3e2om5p7XxiG5ATLihUzSkMC6c', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQXdPM3dvamhEQXhlMjAxMWJkcEZ6bTlxNWhjUWxtc2piVkFNWXBJNyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fX0=', 1734878236);
 
 -- --------------------------------------------------------
 
@@ -439,9 +423,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `nickname`, `email`, `email_verified_at`, `password`, `phone`, `address`, `profile`, `role`, `provider`, `provider_id`, `provider_token`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'superadmin', 'superadmin', 'superadmin@gmail.com', NULL, '$2y$12$lR3fvpmdsQFQYXxUp9tJ7uF38pI4XNH9JmaXc9yciGp1yPRrY6NeW', '09456456456', 'Hong Kong', NULL, 'superadmin', 'simple', NULL, NULL, NULL, NULL, '2024-11-23 00:29:37'),
-(2, 'Vernon', NULL, 'vernon218@gmail.com', NULL, '$2y$12$ek5GwCuL0zwdTwSZ.iUNk.4FcdGCncBzQEZhGaQvRbjg/1KEYd5UO', '09656565656', 'New York', '6741b0e766553XNe1X_5f.jpg', 'user', 'simple', NULL, NULL, NULL, '2024-11-23 04:07:11', '2024-11-23 04:09:35'),
-(3, 'Joshua', NULL, 'joshua@gmail.com', NULL, '$2y$12$792vjd5nZlDFw5zmNfTLjO.VF0VZ8WpJ4d8kzwBDJuI9LKIBKO0pC', '09456456456', NULL, NULL, 'user', 'simple', NULL, NULL, NULL, '2024-11-23 04:13:42', '2024-11-23 04:13:42');
+(1, 'superadmin1', 'superadmin1', 'superadmin1@gmail.com', NULL, '$2y$12$ecOpBTikNhcRCv1vsg7obeNYu8h86MN0jAgkKXKkBJamwxUs42wxu', '09123456789', 'New York', NULL, 'superadmin', 'simple', NULL, NULL, NULL, NULL, '2024-12-22 07:40:41'),
+(2, 'admin1', NULL, 'admin1@fruitables.com', NULL, '$2y$12$Tg.quIslv9bClEamwO60resPC25jeK8pd8ZSJCFJBkleG8OB7tjd.', NULL, NULL, NULL, 'admin', 'simple', NULL, NULL, NULL, '2024-12-22 07:57:57', '2024-12-22 07:57:57'),
+(3, 'gi genevieve', NULL, 'gignvv@gmail.com', NULL, NULL, NULL, NULL, 'https://lh3.googleusercontent.com/a/ACg8ocK9J9Vw4_lBYCNqj3IhPQQf6NCJI8QPYeKoM8Oz8Bwl5srPVw=s96-c', 'user', 'google', '110030719820820425385', 'ya29.a0ARW5m75CmGp9yGEfmXtWj6MatWEdAJ0zOWBzfuhldW-69YUnoy2hOOyY5JJaD2NNyKeKfWeiOXFkTxoMg9pssX9MUrWQ487YKWaFQlu4IVGEku5p3CExFMYNd2j34fKHhfzFhsV3kebgETNlw5ODGwSSFugVGQUmrzoaCgYKAXcSARASFQHGX2MiA6dghxxU2yHF_BMhJwpMGg0170', NULL, '2024-12-22 08:00:03', '2024-12-22 08:00:03');
 
 --
 -- Indexes for dumped tables
@@ -586,7 +570,7 @@ ALTER TABLE `action_logs`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -598,7 +582,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `contacts`
@@ -634,7 +618,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -646,7 +630,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `payment_histories`
 --
 ALTER TABLE `payment_histories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -658,7 +642,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `ratings`
 --
 ALTER TABLE `ratings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`

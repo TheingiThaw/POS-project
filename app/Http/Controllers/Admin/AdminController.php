@@ -150,13 +150,13 @@ class AdminController extends Controller
                     ->distinct('products.id')
                     ->get();
 
+        $stockValidation = true;
+
         foreach($stockchecks as $stockcheck){
             if($stockcheck->count > $stockcheck->stock){
                 $stockValidation = false;
             }
         }
-
-
 
         $paymentHistory = PaymentHistory::select('user_name','phone','address','payment_method','total_amt', 'payslip_image','created_at')
                             ->where('order_code',$orderCode)
