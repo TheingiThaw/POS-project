@@ -19,6 +19,8 @@ class OrderController extends Controller
             'user_id' =>$request->userId,
             'qty' => $request->count
         ]);
+
+        alert()->success('Product added to cart', 'Success');
         return back();
     }
 
